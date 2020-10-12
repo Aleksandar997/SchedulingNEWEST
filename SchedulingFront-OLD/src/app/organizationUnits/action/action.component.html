@@ -1,0 +1,36 @@
+<ng-template portalOutlet>
+    <button (click)="navigateBack()" mat-raised-button>{{'btn_cancel' | translate}}</button>
+    <button *ngIf="!areControlsDisabled()" form="productForm" mat-raised-button
+        color="primary">{{'btn_confirm' | translate}}</button>
+</ng-template>
+<form (ngSubmit)="submit()" [formGroup]="form" id="productForm">
+    <div class="form-row row-actions">
+        <mat-form-field>
+            <input formControlName="name" matInput placeholder="{{'label_name' | translate}}">
+            <mat-error *ngIf="form.getServerError('name')">
+                {{form.getServerError('name')}}
+            </mat-error>
+            <mat-error *ngIf="form.hasError('name')">
+                {{'name_required' | translate}}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-row row-actions">
+        <mat-form-field>
+            <input matInput formControlName="code" placeholder="{{'label_code' | translate}}">
+            <mat-error *ngIf="form.getServerError('code')">
+                {{form.getServerError('code')}}
+            </mat-error>
+            <mat-error *ngIf="form.hasError('code')">
+                {{'code_required' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-checkbox class="active-checkbox" formControlName="active">{{'label_active'}}</mat-checkbox>
+        <mat-checkbox class="active-checkbox" formControlName="bindScheduleToEmployee">{{'label_bind_schedule_to_employee'}}</mat-checkbox>
+    </div>
+</form>
+<div class="map" id="map"
+     leaflet
+     [leafletOptions]="options"
+     (leafletMapReady)="onMapReady($event)">
+</div>

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>0cb6f3c7-a3ec-4ecb-a763-20d9465cd67f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.12" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduling.Contract\Scheduling.Contract.csproj" />
+    <ProjectReference Include="..\Scheduling.Controller\Scheduling.Controller.csproj" />
+    <ProjectReference Include="..\Scheduling.SelectList\Scheduling.SelectList.csproj" />
+    <ProjectReference Include="..\Scheduling\Scheduling.csproj" />
+    <ProjectReference Include="..\Security\Security.csproj" />
+    <ProjectReference Include="..\Configuration\Configuration.csproj" />
+    <ProjectReference Include="..\FileManagement\FileManagement.csproj" />
+  </ItemGroup>
+
+
+</Project>

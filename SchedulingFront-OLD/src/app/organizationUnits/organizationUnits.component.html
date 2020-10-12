@@ -1,0 +1,52 @@
+<ng-template portalOutlet>
+    <button mat-raised-button [routerLink]="['./add']" color="primary">{{'btn_add_organizationUnit' | translate}}</button>
+</ng-template>
+<ng-template filtersPortalOutlet [formGroup]="filters">
+    <mat-form-field>
+        <input matInput formControlName="name" placeholder="{{'label_name' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="code" placeholder="{{'label_code' | translate}}">
+    </mat-form-field>
+</ng-template>
+<data-grid #organizationUnitGrid [displayedColumns]="displayedColumns" matSort [gridName]="'organizationUnitGrid'"
+    [highlightPreviousVisitedRow]="true" [dataSource]="dataSource" [onRowClickLink]="onRowClickLink"
+    (matSortChange)="onSortChange($event)">
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'label_name' | translate}}
+        </th>
+        <td mat-cell *matCellDef="let organizationUnit"> {{organizationUnit.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'label_code' | translate}}
+        </th>
+        <td mat-cell *matCellDef="let organizationUnit"> {{organizationUnit.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'label_active' | translate}}
+        </th>
+        <td mat-cell *matCellDef="let organizationUnit">
+            <mat-icon>{{organizationUnit.active ? 'check' : 'close'}}</mat-icon>
+        </td>
+    </ng-container>
+
+    <ng-template #actions let-organizationUnit let-index="index">
+        <button mat-icon-button matTooltip="{{'tooltip_view' | translate}}" [routerLink]="['./view',organizationUnit.organizationUnitId]"
+            (click)="organizationUnitGrid.setCacheActivePage(index)">
+            <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="{{'tooltip_edit' | translate}}" [routerLink]="['./edit',organizationUnit.organizationUnitId]"
+            (click)="organizationUnitGrid.setCacheActivePage(index)">
+            <mat-icon>mode_edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="{{'tooltip_delete' | translate}}"
+            (click)="delete(organizationUnit.organizationUnitId)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </ng-template>
+    <mat-paginator (page)="onPageChange($event)" [length]="datasourceLength">
+    </mat-paginator>
+</data-grid>

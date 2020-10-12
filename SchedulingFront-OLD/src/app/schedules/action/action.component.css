@@ -1,0 +1,34 @@
+.slider {
+    margin-top: 1rem;
+}
+
+::ng-deep mat-slider {
+    width: inherit;
+}
+/* 
+::ng-deep data-grid mat-form-field {
+    height: 30px !important;
+} */
+
+.customer {
+    display: flex;
+    align-items: center;
+}
+
+.customer mat-form-field {
+    width: 100%;
+}
+
+mat-slide-toggle {
+    width: auto;
+}
+
+.bindToEmployee {
+    width: fit-content;
+}
+
+ngx-timepicker-field {
+    margin-bottom: 0.9rem;
+    width: 20%;
+}
+

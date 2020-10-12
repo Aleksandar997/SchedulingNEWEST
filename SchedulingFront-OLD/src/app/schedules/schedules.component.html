@@ -1,0 +1,59 @@
+<ng-template portalOutlet>
+  <button mat-raised-button (click)="getData()" color="primary">{{'btn_refresh' | translate}}</button>
+  <button (click)="navigateToAction()" mat-raised-button color="primary">{{'btn_add_schedule' | translate}}</button>
+</ng-template>
+<ng-template filtersPortalOutlet [formGroup]="filters">
+  <mat-form-field disableIfUnauthorized>
+    <mat-label>{{'label_employees' | translate}}</mat-label>
+    <mat-select formControlName="employees" multiple>
+      <mat-option *ngFor="let emp of employees" [value]="emp.id">
+        {{emp.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{'label_organization_units' | translate}}</mat-label>
+    <mat-select formControlName="organizationUnits" [compareWith]="selectlistCompare" multiple>
+      <mat-option *ngFor="let orgUnit of organizationUnits" [value]="orgUnit.id">
+        {{orgUnit.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>
+<mat-tab-group (selectedTabChange)="selectedTabChange($event)" #tabGroup>
+  <mat-tab #tab [label]="tab.name" *ngFor="let tab of tabs">
+    <ng-template mat-tab-label>
+      {{tab}}
+      <!-- <button mat-icon-button (click)="addScheduleType()">
+        <mat-icon>delete</mat-icon>
+    </button> -->
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+    </ng-template>
+  </mat-tab>
+  <mat-tab disabled [isActive]="false">
+    <ng-template mat-tab-label>
+      <button mat-icon-button (click)="addScheduleType()">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </ng-template>
+  </mat-tab>
+  <!-- <button mat-raised-button color="primary">add</button> -->
+</mat-tab-group>
+<calendar (deleteDetail)="deleteDetail($event)" (detail)="getData($event)" [displayedColumns]="displayedColumns">
+</calendar>

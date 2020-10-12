@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto; 
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.schedule-modal {
+    width: 100vh;
+}
+
+.password-change-modal .wrapper .mat-form-field {
+    width: inherit !important;
+}
+
+.password-change-modal .wrapper form {
+    padding: 0.4rem;
+}
+

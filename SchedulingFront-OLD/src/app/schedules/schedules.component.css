@@ -1,0 +1,22 @@
+::ng-deep mat-tab-group .mat-tab-body-wrapper {
+    display: none !important;
+}
+
+::ng-deep mat-tab-group .mat-tab-labels > *:last-child {
+    justify-content: left;
+}
+
+::ng-deep mat-tab-group .mat-tab-labels > .mat-tab-label:not(:last-child) .mat-tab-label-content {
+    width: -webkit-fill-available;
+}
+
+::ng-deep mat-tab-group .mat-tab-labels > .mat-tab-label:not(:last-child) .mat-tab-label-content > button:last-child {
+    justify-content: flex-end;
+}
+
+::ng-deep mat-tab-group .mat-tab-labels > .mat-tab-label:not(:last-child) .mat-tab-label-content button {
+    display: none;
+}
+::ng-deep mat-tab-group .mat-tab-labels > .mat-tab-label-active:not(:last-child) .mat-tab-label-content button {
+    display: flex;
+}
